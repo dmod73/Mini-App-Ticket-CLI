@@ -1,0 +1,4 @@
+{"timestamp": "2025-11-26T22:15:33.261014Z", "user_id": "anonymous", "username": "unknown", "role": "unknown", "action": "REGISTER", "entity": "user", "entity_id": "1", "status": "success", "details": "Nuevo usuario Dean con rol user"}
+{"timestamp": "2025-11-26T22:15:49.726661Z", "user_id": "1", "username": "Dean", "role": "user", "action": "LOGIN", "entity": "user", "entity_id": "1", "status": "success", "details": "Inicio de sesión correcto"}
+{"timestamp": "2025-11-26T22:16:59.867416Z", "user_id": "1", "username": "Dean", "role": "user", "action": "TICKET_CREATE", "entity": "ticket", "entity_id": "1", "status": "success", "details": "Título: Fallo api, Prioridad: high"}
+{"timestamp": "2025-11-26T22:18:27.682213Z", "user_id": "1", "username": "Dean", "role": "user", "action": "TICKET_STATUS_CHANGE", "entity": "ticket", "entity_id": "1", "status": "success", "details": "Ticket 1: open -> in_progress"}

@@ -1,0 +1,1 @@
+{"id": "1", "username": "Dean", "password_hash": "44e95299550281815b24c02268751ca95713c284291e4b2985c662147fbfa141", "role": "user", "created_at": "2025-11-26T22:15:33.248767Z", "updated_at": "2025-11-26T22:15:33.248767Z"}
