@@ -4,7 +4,7 @@ Punto de entrada del programa - Fases 1, 2 y 3: Gestión de usuarios, tickets y 
 """
 from core.auth import register_user, login_user
 from core.logger import log_action
-from core.validation import input_int_in_range
+from core.validation import input_int_in_range, input_password, safe_input
 from core.tickets import (
     create_ticket,
     list_tickets,
@@ -70,10 +70,10 @@ def main():
                 elif option == 1:
                     # Flujo de registro
                     print("\n--- Registro de nuevo usuario ---")
-                    username = input("Nombre de usuario: ").strip()
-                    password = input("Contraseña: ").strip()
+                    username = safe_input("Nombre de usuario: ", field_type="username")
+                    password = input_password("Contraseña: ").strip()
                     print("Roles disponibles: user, agent")
-                    role = input("Rol: ").strip().lower()
+                    role = safe_input("Rol: ", field_type="choice")
                     
                     # Intentar registrar al usuario
                     user = register_user(username, password, role)
@@ -94,8 +94,8 @@ def main():
                 elif option == 2:
                     # Flujo de inicio de sesión
                     print("\n--- Inicio de sesión ---")
-                    username = input("Nombre de usuario: ").strip()
-                    password = input("Contraseña: ").strip()
+                    username = safe_input("Nombre de usuario: ", field_type="username")
+                    password = input_password("Contraseña: ").strip()
                     
                     # Intentar iniciar sesión
                     user = login_user(username, password)

@@ -1,1 +1,2 @@
-{"id": "1", "owner_id": "1", "title": "Fallo api", "description": "Api fallando en website", "status": "in_progress", "priority": "high", "assignee_id": "", "created_at": "2025-11-26T22:16:59.866290Z", "updated_at": "2025-11-26T22:18:27.680561Z"}
+{"id": "1", "owner_id": "1", "title": "Error de deploy", "description": "Problemas al hacer deploy en azure", "status": "open", "priority": "high", "assignee_id": "", "created_at": "2025-11-26T23:45:30.237040Z", "updated_at": "2025-11-26T23:45:30.237040Z"}
+{"id": "2", "owner_id": "1", "title": "Problema Prueba", "description": "prueba", "status": "open", "priority": "low", "assignee_id": "", "created_at": "2025-11-26T23:48:05.402773Z", "updated_at": "2025-11-26T23:48:05.402773Z"}

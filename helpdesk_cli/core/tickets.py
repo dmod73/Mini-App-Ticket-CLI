@@ -7,7 +7,7 @@ from datetime import datetime
 from typing import List, Optional
 
 from .storage import DATA_DIR, read_json_lines, write_json_lines
-from .validation import input_int_in_range, sanitize_text_field
+from .validation import input_int_in_range, sanitize_text_field, safe_input
 from .logger import log_action
 from models.ticket import Ticket
 from models.user import User
@@ -119,7 +119,7 @@ def create_ticket(current_user: User) -> None:
     
     # Pedir prioridad
     print("Prioridades disponibles: low, medium, high")
-    priority = input("Prioridad: ").strip().lower()
+    priority = safe_input("Prioridad: ", field_type="choice")
     if not is_valid_priority(priority):
         print("Error: Prioridad inválida. Debe ser: low, medium o high.")
         return
@@ -192,7 +192,7 @@ def view_ticket_detail(current_user: User) -> None:
     """
     print("\n--- Ver detalle de ticket ---")
     
-    ticket_id = input("ID del ticket: ").strip()
+    ticket_id = safe_input("ID del ticket: ", field_type="id")
     
     tickets = _load_tickets()
     ticket = _find_ticket_by_id(ticket_id, tickets)
@@ -228,7 +228,7 @@ def update_ticket(current_user: User) -> None:
     """
     print("\n--- Editar ticket ---")
     
-    ticket_id = input("ID del ticket a editar: ").strip()
+    ticket_id = safe_input("ID del ticket a editar: ", field_type="id")
     
     tickets = _load_tickets()
     ticket = _find_ticket_by_id(ticket_id, tickets)
@@ -299,7 +299,7 @@ def update_ticket(current_user: User) -> None:
         elif option == 3:
             # Cambiar prioridad
             print("Prioridades: low, medium, high")
-            new_priority = input("Nueva prioridad: ").strip().lower()
+            new_priority = safe_input("Nueva prioridad: ", field_type="choice")
             if is_valid_priority(new_priority):
                 ticket.priority = new_priority
                 changes_made = True
@@ -311,7 +311,7 @@ def update_ticket(current_user: User) -> None:
             # Cambiar estado
             print("Estados: open, in_progress, closed")
             print(f"Estado actual: {ticket.status}")
-            new_status = input("Nuevo estado: ").strip().lower()
+            new_status = safe_input("Nuevo estado: ", field_type="choice")
             
             if not is_valid_status(new_status):
                 print("Error: Estado inválido.")
@@ -341,7 +341,7 @@ def update_ticket(current_user: User) -> None:
         elif option == 5 and current_user.role == "agent":
             # Reasignar ticket (solo agentes)
             print("Ingresa el ID del agente a asignar (o deja vacío para desasignar):")
-            new_assignee = input("ID del agente: ").strip()
+            new_assignee = safe_input("ID del agente: ", field_type="id")
             ticket.assignee_id = new_assignee
             changes_made = True
             print("✓ Asignación actualizada.")
@@ -399,7 +399,7 @@ def delete_ticket(current_user: User) -> None:
         print("No tienes permiso para eliminar tickets. Solo los agentes pueden hacerlo.")
         return
     
-    ticket_id = input("ID del ticket a eliminar: ").strip()
+    ticket_id = safe_input("ID del ticket a eliminar: ", field_type="id")
     
     tickets = _load_tickets()
     ticket = _find_ticket_by_id(ticket_id, tickets)
